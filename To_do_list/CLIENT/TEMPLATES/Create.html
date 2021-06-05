@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To_do_list</title>
+</head>
+<body>
+     <h1>To_do list</h1>
+     <form action="{{ url_for('add') }}" method="POST">
+         <label> Enter the new item: </label>
+         <input type="text" name="todoitem">
+         <input type="submit" value="Submit">
+     </form>
+     <h3> Incomplete tasks </h3>
+     <ul>
+         {% for task in incomplete %}
+             <li>
+                 {{ task }}
+                 <a href="{{ url_for('complete', task=task) }}">
+                    Mark as complete
+                 </a>
+             </li>
+         {% endfor %}
+     </ul>
+     <h3> Complete tasks </h3>
+     <ul>
+         {% for task in complete %}
+             <li>{{ task }}</li>
+         {% endfor %}
+     </ul>
+</body>
+</html>
